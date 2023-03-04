@@ -116,6 +116,7 @@ public class SeleniumTest {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            Assert.fail();
         } finally {
             driver1.quit();
         }
@@ -175,6 +176,7 @@ public class SeleniumTest {
             }
         } catch (Exception e) {
             e.printStackTrace();
+            Assert.fail();
         } finally {
             driver2.quit();
         }
