@@ -33,12 +33,12 @@
             <version>2.8.1</version>
         </dependency>
         <!-- test ng is better that junit regarding selenium testing-->
-        <dependency>
-            <groupId>org.testng</groupId>
-            <artifactId>testng</artifactId>
-            <version>7.6.1</version>
-            <!--<scope>test</scope>-->
-        </dependency>
+        <!--<dependency>-->
+        <!--    <groupId>org.testng</groupId>-->
+        <!--    <artifactId>testng</artifactId>-->
+        <!--    <version>7.6.1</version>-->
+        <!--    &lt;!&ndash;<scope>test</scope>&ndash;&gt;-->
+        <!--</dependency>-->
         <!-- https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java -->
         <dependency>
             <groupId>org.seleniumhq.selenium</groupId>
@@ -46,12 +46,12 @@
             <version>4.8.1</version>
         </dependency>
 
-        <!--<dependency>-->
-        <!--    <groupId>org.junit.jupiter</groupId>-->
-        <!--    <artifactId>junit-jupiter-api</artifactId>-->
-        <!--    <version>5.9.2</version>-->
-        <!--    <scope>test</scope>-->
-        <!--</dependency>-->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+            <version>5.9.2</version>
+            <!--<scope>test</scope>-->
+        </dependency>
     </dependencies>
 
 </project>

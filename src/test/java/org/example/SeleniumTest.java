@@ -2,15 +2,14 @@ package org.example;
 
 import com.google.gson.Gson;
 import org.example.util.RandomSkierLiftRide;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
 
 public class SeleniumTest {
 
@@ -22,7 +21,7 @@ public class SeleniumTest {
     // interval time for waiting the response
     private final Integer sl = 100;
 
-    @BeforeClass
+    @BeforeEach
     public void beforeClass() {
         System.out.println("Start Testing");
 
@@ -30,8 +29,11 @@ public class SeleniumTest {
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_mac_arm64/chromedriver");
 
         // should change to the destination domain
-        testUrl = "http://localhost:8080/coen6731/public/index.html";
-        endpointUrl = "http://localhost:8080/coen6731/skiers";
+        //        testUrl = "http://localhost:8080/coen6731/public/index.html";
+        //        endpointUrl = "http://localhost:8080/coen6731/skiers";
+
+        testUrl = "http://155.248.237.143:8080/coen6731/public/index.html";
+        endpointUrl = "http://155.248.237.143:8080/coen6731/skiers";
     }
 
     private void clearInput(WebElement... elements) {
@@ -74,8 +76,7 @@ public class SeleniumTest {
             skierID.sendKeys(r.getSkierID().toString());
             body.sendKeys(new Gson().toJson(r.getBody()));
             sendPost.click();
-            Assert.assertTrue(output.getText().contains("Request failed with status code 404") && output.getText().contains("Not Found"));
-
+            Assertions.assertTrue(output.getText().contains("Request failed with status code 404") && output.getText().contains("Not Found"));
             // test valid params
             for (int i = 0; i < batch; i++) {
                 clearInput(url, resortID, seasonID, dayID, skierID, body);
@@ -91,10 +92,10 @@ public class SeleniumTest {
                 while (output.getText().equals("")) {
                     sleep(sl);
                 }
-                Assert.assertTrue(output.getText().contains("Response Code: 201"));
+                Assertions.assertTrue(output.getText().contains("Response Code: 201"));
                 final RandomSkierLiftRide rsObj = new Gson().fromJson(output.getText().replace("Response Code: 201", "").trim().replace("liftRide", "body"), RandomSkierLiftRide.class);
 
-                Assert.assertEquals(rsObj, r);
+                Assertions.assertEquals(rsObj, r);
             }
 
             // test invalid params
@@ -112,11 +113,11 @@ public class SeleniumTest {
                 while (output.getText().equals("")) {
                     sleep(sl);
                 }
-                Assert.assertTrue(output.getText().contains("Request failed with status code 400") && output.getText().contains("ResortID or SkierID should be an integer."));
+                Assertions.assertTrue(output.getText().contains("Request failed with status code 400") && output.getText().contains("ResortID or SkierID should be an integer."));
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Assert.fail();
+            Assertions.fail();
         } finally {
             driver1.quit();
         }
@@ -155,7 +156,7 @@ public class SeleniumTest {
                 while (output.getText().equals("")) {
                     sleep(sl);
                 }
-                Assert.assertTrue(output.getText().contains("Response Code: 200"));
+                Assertions.assertTrue(output.getText().contains("Response Code: 200"));
             }
 
             // test invalid params
@@ -172,11 +173,11 @@ public class SeleniumTest {
                 while (output.getText().equals("")) {
                     sleep(sl);
                 }
-                Assert.assertTrue(output.getText().contains("Request failed with status code 400") && output.getText().contains("ResortID or SkierID should be an integer."));
+                Assertions.assertTrue(output.getText().contains("Request failed with status code 400") && output.getText().contains("ResortID or SkierID should be an integer."));
             }
         } catch (Exception e) {
             e.printStackTrace();
-            Assert.fail();
+            Assertions.fail();
         } finally {
             driver2.quit();
         }
