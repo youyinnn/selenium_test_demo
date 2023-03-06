@@ -29,6 +29,11 @@ Material and Tutorial are listed below:
 1. JDK >= 1.8
 2. Maven >= 3.6
 
+For Eclipse User:
+
+**You will need to download the TestNG Plugin.**
+https://www.browserstack.com/guide/how-to-install-testng-in-eclipse
+
 ### Configure and Download the WebDriver
 
 The code for selenium is located at `org.example.SeleniumTest`.
