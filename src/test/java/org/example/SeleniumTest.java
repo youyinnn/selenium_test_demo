@@ -10,6 +10,7 @@ import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 
 public class SeleniumTest {
 
@@ -21,12 +22,16 @@ public class SeleniumTest {
     // interval time for waiting the response
     private final Integer sl = 100;
 
+    // update: 28 Mar: https://stackoverflow.com/questions/75680149/unable-to-establish-websocket-connection
+    private ChromeOptions chromeOptions;
+
     @BeforeEach
     public void beforeClass() {
         System.out.println("Start Testing");
 
         // should download and locate to the correct browser driver
-        System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_mac_arm64/chromedriver");
+        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver_mac_arm64/chromedriver");
+        chromeOptions = new ChromeOptions().addArguments("--remote-allow-origins=*");
 
         // should change to the destination domain
         //        testUrl = "http://localhost:8080/coen6731/public/index.html";
@@ -49,7 +54,7 @@ public class SeleniumTest {
 
     @Test
     public void postTest() {
-        WebDriver driver1 = new ChromeDriver();
+        WebDriver driver1 = new ChromeDriver(chromeOptions);
         try {
             System.out.println("Start Post Testing");
             driver1.get(testUrl);
@@ -125,7 +130,7 @@ public class SeleniumTest {
 
     @Test
     public void getTest() {
-        WebDriver driver2 = new ChromeDriver();
+        WebDriver driver2 = new ChromeDriver(chromeOptions);
         try {
             System.out.println("Start Get Testing");
             driver2.get(testUrl);

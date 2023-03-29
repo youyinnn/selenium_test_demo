@@ -2,9 +2,9 @@
 
 **The project and the tested web server are for course demonstration purposes.**
 
-**You could try light testing with the selenium code.** 
+**You could try light testing with the selenium code.**
 
-**But please don't perform heavy batch size.** 
+**But please don't perform heavy batch size.**
 
 **It might crash the server :smile:.**
 
@@ -59,17 +59,110 @@ public void beforeClass() {
 }
 ```
 
-For using the demo, you could change the domain to: 
+For using the demo, you could change the domain to:
 
 ``` java 
 testUrl = "http://155.248.237.143:8080/coen6731/public/index.html";
 endpointUrl = "http://155.248.237.143:8080/coen6731/skiers";
 ```
 
-The web driver can be downloaded at: https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/#quick-reference
+The web driver can be downloaded
+at: https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/#quick-reference
 
 ### Run Test with Maven
 
 ``` bash 
 mvn clean test
 ```
+
+## Cucumber Demo (Mar 28)
+
+### Materials
+
+- [What is Behaviour Driven Development (BDD)?](https://cucumber.io/docs/bdd/)
+- [10 Minutes Cucumber Showcase](https://cucumber.io/docs/guides/10-minute-tutorial/?lang=java)
+- [Gherkin Syntax](https://cucumber.io/docs/gherkin/reference/)
+- [Maven Dependence](https://cucumber.io/docs/installation/java/)
+
+### Cucumber & BDD in This Project
+
+We demonstrate how to use cucumber and BDD to perform the GET request testing we did
+in `org.example.SeleniumTest.getTest`.
+
+1. Define feature file in the resources folder `src/test/resources`.
+
+   The first scenario is for opening chrome and visiting the link.
+
+   The second scenario is for defining multiple instances of the get request testing.
+    ``` cherkin 
+    Feature: Get
+      Testing get request.
+    
+      @openWebPage
+      Scenario Outline:
+        When I open the chrome browser with "<url>"
+        Then I should see the webpage render "<result>"
+    
+        Examples:
+          | url                                                    | result    |
+          | http://155.248.237.143:8080/coen6731/public/index.html | correctly |
+    #      | http://localhost:8080/coen6731/public/index.html       | correctly |
+    
+      @sendGetRequest
+      Scenario Outline:
+        When I generate <validity> random parameters for <number_req> requests
+        Then I construct requests with those parameters and send them to api "<api_endpoint>"
+        And I should receive <number_resp> responses contain message "<response_text>"
+    
+        Examples:
+          | validity | number_req | number_resp | response_text                             | api_endpoint                                |
+          | 1        | 10         | 10          | Response Code: 200                        | http://155.248.237.143:8080/coen6731/skiers |
+          | 0        | 10         | 10          | Request failed with status code 400       | http://155.248.237.143:8080/coen6731/skiers |
+          | 0        | 10         | 10          | ResortID or SkierID should be an integer. | http://155.248.237.143:8080/coen6731/skiers |
+    ```
+
+2. Implement the Scenarios in `org.example.SeleniumCucumberTest`. We have five steps therefore we need five step
+   implementations.
+   ``` java 
+   @When("I open the chrome browser with {string}")
+    public void openUrl(String url) {
+        // code
+    }
+
+    @Then("I should see the webpage render {string}")
+    public void iShouldSeeTheWebpageRender(String arg0) {
+        // code
+    }
+
+    @When("I generate {int} random parameters for {int} requests")
+    public void iGenerateRandomParametersForRequests(int parameterValidity, int numberOfRequest) {
+        // code
+    }
+
+    @Then("I construct requests with those parameters and send them to api {string}")
+    public void iConstructRequestsWithThoseParametersAndSendThemToApi(String apiEndpoint) {
+        // code
+    }
+
+    @Then("I should receive {int} responses contain message {string}")
+    public void iShouldReceiveResponsesWithStatusCode(int numberOfResponse, String responseText) {
+        // code 
+    }
+   ```
+   
+3. Run the cucumber test. 
+   1. IDE agnostic way: 
+      ``` bash
+      mvn test
+      ```
+   2. Eclipse: 
+   
+      Install the cucumber plugin: 
+      ![img.png](./imgs/cu.png)
+   
+      Run as cucumber features:
+      ![img.png](./imgs/curun.png)
+   3. IDEA should be easy. 
+
+4. Expected Result
+   ![img.png](./imgs/rs.png)
