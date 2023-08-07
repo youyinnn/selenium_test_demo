@@ -42,8 +42,12 @@ public class SeleniumCucumberTest {
         // Runs before all scenarios
         System.out.println("Start Testing");
 
+        // config the chrome driver if you are using chrome older that version 115
         // should download and locate to the correct browser driver
+        // and uncomment this
+
         // System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver_mac_arm64/Google Chrome for Testing.app");
+
         // update: 28 Mar: https://stackoverflow.com/questions/75680149/unable-to-establish-websocket-connection
         ChromeOptions chromeOptions = new ChromeOptions().addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);

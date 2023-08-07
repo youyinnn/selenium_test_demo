@@ -29,10 +29,12 @@ public class SeleniumTest {
     public void beforeClass() {
         System.out.println("Start Testing");
 
+        // config the chrome driver if you are using chrome older that version 115
         // should download and locate to the correct browser driver
+        // and uncomment this
         // System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver_mac_arm64/chromedriver");
-        chromeOptions = new ChromeOptions().addArguments("--remote-allow-origins=*");
 
+        chromeOptions = new ChromeOptions().addArguments("--remote-allow-origins=*");
         host = "http://168.138.68.114";
         // should change to the destination domain
         //        testUrl = "http://localhost:8080/coen6731/public/index.html";
