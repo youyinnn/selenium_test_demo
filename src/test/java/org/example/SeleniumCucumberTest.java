@@ -1,16 +1,11 @@
 package org.example;
 
-import com.beust.ah.A;
-import com.google.gson.Gson;
 import io.cucumber.java.AfterAll;
 import io.cucumber.java.BeforeAll;
-import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.example.util.RandomSkierLiftRide;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.platform.suite.api.ConfigurationParameter;
 import org.junit.platform.suite.api.IncludeEngines;
 import org.junit.platform.suite.api.SelectClasspathResource;
@@ -48,7 +43,7 @@ public class SeleniumCucumberTest {
         System.out.println("Start Testing");
 
         // should download and locate to the correct browser driver
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver_mac_arm64/chromedriver");
+        // System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver_mac_arm64/Google Chrome for Testing.app");
         // update: 28 Mar: https://stackoverflow.com/questions/75680149/unable-to-establish-websocket-connection
         ChromeOptions chromeOptions = new ChromeOptions().addArguments("--remote-allow-origins=*");
         driver = new ChromeDriver(chromeOptions);

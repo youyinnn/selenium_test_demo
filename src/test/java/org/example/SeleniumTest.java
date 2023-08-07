@@ -14,7 +14,7 @@ import org.openqa.selenium.chrome.ChromeOptions;
 
 public class SeleniumTest {
 
-    private String testUrl, endpointUrl;
+    private String testUrl, endpointUrl, host;
 
     // how many request
     private final Integer batch = 10;
@@ -30,15 +30,16 @@ public class SeleniumTest {
         System.out.println("Start Testing");
 
         // should download and locate to the correct browser driver
-        System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver_mac_arm64/chromedriver");
+        // System.setProperty("webdriver.chrome.driver", "src/test/resources/chromedriver_mac_arm64/chromedriver");
         chromeOptions = new ChromeOptions().addArguments("--remote-allow-origins=*");
 
+        host = "http://168.138.68.114";
         // should change to the destination domain
         //        testUrl = "http://localhost:8080/coen6731/public/index.html";
         //        endpointUrl = "http://localhost:8080/coen6731/skiers";
 
-        testUrl = "http://155.248.237.143:8080/coen6731/public/index.html";
-        endpointUrl = "http://155.248.237.143:8080/coen6731/skiers";
+        testUrl = host + ":8080/coen6731/public/index.html";
+        endpointUrl =  host + ":8080/coen6731/skiers";
     }
 
     private void clearInput(WebElement... elements) {

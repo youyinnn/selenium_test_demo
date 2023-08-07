@@ -13,7 +13,7 @@ The demo shows how to use selenium to test a remote webpage.
 
 ## How To
 
-You can first visit http://155.248.237.143:8080/coen6731/public/index.html.
+You can first visit http://168.138.68.114:8080/coen6731/public/index.html.
 
 And if it crashed, please let me know: [jun.huang@concordia.ca](jun.huang@concordia.ca).
 
@@ -50,8 +50,10 @@ private final Integer sl = 100;
 public void beforeClass() {
     System.out.println("Start Testing");
 
+    // config the chrome driver if you are using chrome older that version 115
     // should download and locate to the correct browser driver
-    System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_mac_arm64/chromedriver");
+    // and uncomment this
+    // System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver_mac_arm64/chromedriver");
 
     // should change to the destination domain
     testUrl = "http://localhost:8080/coen6731/public/index.html";
@@ -62,9 +64,12 @@ public void beforeClass() {
 For using the demo, you could change the domain to:
 
 ``` java 
-testUrl = "http://155.248.237.143:8080/coen6731/public/index.html";
-endpointUrl = "http://155.248.237.143:8080/coen6731/skiers";
+testUrl = "http://168.138.68.114:8080/coen6731/public/index.html";
+endpointUrl = "http://168.138.68.114:8080/coen6731/skiers";
 ```
+
+#### IMPORTANT!!!
+DOWNLOAD the chrome driver if you are using chrome older that version 115.
 
 The web driver can be downloaded
 at: https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/#quick-reference
@@ -105,7 +110,7 @@ in `org.example.SeleniumTest.getTest`.
     
         Examples:
           | url                                                    | result    |
-          | http://155.248.237.143:8080/coen6731/public/index.html | correctly |
+          | http://168.138.68.114:8080/coen6731/public/index.html | correctly |
     #      | http://localhost:8080/coen6731/public/index.html       | correctly |
     
       @sendGetRequest
@@ -116,9 +121,9 @@ in `org.example.SeleniumTest.getTest`.
     
         Examples:
           | validity | number_req | number_resp | response_text                             | api_endpoint                                |
-          | 1        | 10         | 10          | Response Code: 200                        | http://155.248.237.143:8080/coen6731/skiers |
-          | 0        | 10         | 10          | Request failed with status code 400       | http://155.248.237.143:8080/coen6731/skiers |
-          | 0        | 10         | 10          | ResortID or SkierID should be an integer. | http://155.248.237.143:8080/coen6731/skiers |
+          | 1        | 10         | 10          | Response Code: 200                        | http://168.138.68.114:8080/coen6731/skiers |
+          | 0        | 10         | 10          | Request failed with status code 400       | http://168.138.68.114:8080/coen6731/skiers |
+          | 0        | 10         | 10          | ResortID or SkierID should be an integer. | http://168.138.68.114:8080/coen6731/skiers |
     ```
 
 2. Implement the Scenarios in `org.example.SeleniumCucumberTest`. We have five steps therefore we need five step

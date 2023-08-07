@@ -8,7 +8,7 @@ Feature: Get
 
     Examples:
       | url                                                    | result    |
-      | http://155.248.237.143:8080/coen6731/public/index.html | correctly |
+      | http://168.138.68.114:8080/coen6731/public/index.html | correctly |
 #      | http://localhost:8080/coen6731/public/index.html       | correctly |
 
   @sendGetRequest
@@ -19,6 +19,6 @@ Feature: Get
 
     Examples:
       | validity | number_req | number_resp | response_text                             | api_endpoint                                |
-      | 1        | 10         | 10          | Response Code: 200                        | http://155.248.237.143:8080/coen6731/skiers |
-      | 0        | 10         | 10          | Request failed with status code 400       | http://155.248.237.143:8080/coen6731/skiers |
-      | 0        | 10         | 10          | ResortID or SkierID should be an integer. | http://155.248.237.143:8080/coen6731/skiers |
+      | 1        | 10         | 10          | Response Code: 200                        | http://168.138.68.114:8080/coen6731/skiers |
+      | 0        | 10         | 10          | Request failed with status code 400       | http://168.138.68.114:8080/coen6731/skiers |
+      | 0        | 10         | 10          | ResortID or SkierID should be an integer. | http://168.138.68.114:8080/coen6731/skiers |
